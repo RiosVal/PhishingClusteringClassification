@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Identificador de Phishing</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #F2EFE7;
+            color: #000000;
+        }
+        .form-control {
+            background-color: #9ACBD0;
+            color: #000000;
+            border: 1px solid #444;
+        }
+        .form-control::placeholder {
+            color: #aaa;
+        }
+        .form-label {
+            font-weight: bold;
+        }
+        .info-text {
+            font-size: 0.9rem;
+            color: #888888;
+        }
+        .btn-custom {
+            background-color: #48A6A7;
+            border-color: #48A6A7;
+            color: #ffffff;
+        }
+        .alert-info {
+            background-color: #006A71;
+            border-color: #2e2e4e;
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h2 class="mb-4 text-center">🎣 Identificador de Phishing en emails</h2>
+        <form method="POST">
+            <div class="form-group">
+                <label class="form-label">Número de palabras de urgencia</label>
+                <input type="number" step="any" class="form-control" name="num_urgent_keywords" placeholder="0" required>
+                <small class="info-text">Los estafadores suelen utilizar palabras que crean una sensación de urgencia 
+                    (por ejemplo, "urgente", "inmediato", "acción requerida") para presionar a la víctima a actuar sin pensar.</small>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Número de links dentro del email</label>
+                <input type="number" step="any" class="form-control" name="num_links" placeholder="0" required>
+                <small class="info-text">Los correos de phishing a menudo contienen muchos links para dirigir
+                     a la víctima a sitios web maliciosos.</small>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Número de correos electrónicos</label>
+                <input type="number" step="any" class="form-control" name="num_email_addresses" placeholder="0" required>
+                <small class="info-text">Los estafadores pueden incluir varias direcciones de correo electrónico
+                     falsas para dar legitimidad o para recopilar información de la víctima.</small>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Número de errores de ortografía</label>
+                <input type="number" step="any" class="form-control" name="num_spelling_errors" placeholder="0" required>
+                <small class="info-text">Los correos de phishing a menudo contienen errores de ortografía y gramática
+                     porque los estafadores no suelen ser hablantes nativos del idioma o no se preocupan por la calidad de la escritura.</small>
+            </div>
+            <button type="submit" class="btn btn-custom btn-block">Identificar phishing</button>
+        </form>
+
+        {% if prediction %}
+            <div class="alert alert-info mt-4 text-center">
+                🎣 Predicción: <strong>{{ prediction }}</strong>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
